@@ -1,8 +1,10 @@
 import { useState } from "react";
 import swal from "sweetalert";
 import style from '../App.module.css'
+import  {capitalizarPalabras}   from '../Helper/helperFunctions.js';
 
-const SongForm = ({ handleSearch, search }) => {
+
+const SongForm = ({ handleSearch, setLoading }) => {
   const [form, setForm] = useState({ song: "", artist: "" });
 
   const handleChange = (e) => {
@@ -17,6 +19,8 @@ const SongForm = ({ handleSearch, search }) => {
       swal("", "Nada que buscar", "warning");
       return;
     }
+    setLoading(true)
+    setLoading(true)
     let nombre = capitalizarPalabras(form.artist);
     let cancion = capitalizarPalabras(form.song);
     console.log(nombre);
@@ -30,18 +34,7 @@ const SongForm = ({ handleSearch, search }) => {
 
     clearForm();
   };
-  function capitalizarPalabras(val) {
-    if (val) {
-      return val
-        .toLowerCase()
-        .trim()
-        .split(" ")
-        .map((v) => v[0].toUpperCase() + v.substr(1))
-        .join(" ");
-    } else {
-      return null;
-    }
-  }
+  
   const clearForm = () => setForm({ song: "", artist: "" });
 
   return (

@@ -13,11 +13,12 @@ const SongSeach = () => {
 
   useEffect(() => {
     if (search === null) return;
+    console.log(search);
     const { artist, song } = search;
     let artistUrl = `https://www.theaudiodb.com/api/v1/json/2/search.php?s=${artist}`;
     let songurl = `https://api.lyrics.ovh/v1/${artist}/${song}`;
 
-    console.log(songurl);
+    
     const fetchData = async () => {
       const [artistRes, songRes] = await Promise.all([
         helpHttp().get(artistUrl),
@@ -37,18 +38,18 @@ const SongSeach = () => {
         : setBio({ artists: artistRes.artists });
       /* VALIDACIONES DE EL FETCH DE CANCION */
 
-      setLyric({ ...songRes });
+      setLyric({ ...songRes,...search });
     };
-    setLoading(true);
     fetchData();
-    setLoading(false);
+    
     clearData();
     clearData();
   }, [search]);
-
+  
   const handleSearch = (data) => {
+    
     setSearch({ ...data });
-    console.log(search);
+   
   };
   const clearData = () => {
     setSearch(null);
@@ -61,10 +62,11 @@ const SongSeach = () => {
     <div >
       <h1 className={style.tittle}>Buscador de Canciones</h1>
       <div className={style.container}>
-        {loading ? <Loading /> : null}
-        <SongForm handleSearch={handleSearch} search={search} />
+        <SongForm setLoading={setLoading} handleSearch={handleSearch} search={search} />
         <br />
-        <SongDetails bio={bio} lyric={lyric} />
+        {loading ? <Loading /> : null }
+         <SongDetails bio={bio} setLoading={setLoading} lyric={lyric} /> 
+        
       <Footer/>
       </div>
     </div>

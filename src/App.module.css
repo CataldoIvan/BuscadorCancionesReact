@@ -2,6 +2,24 @@
   font-family: "Raleway", sans-serif;
   box-sizing: border-box;
 }
+.loader {
+
+  margin: auto;
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid #3498db;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
 @media only screen and (min-width: 800px) {
     .container {
         margin: auto;
@@ -56,13 +74,10 @@
   display: inline-flex;
 }
 .lyric {
-  background-color: aqua;
   width: 50%;
   white-space: pre;
 }
 .sectionArt {
-  background-color: rgb(216, 91, 83);
-
   white-space: "pre-wrap";
   text-align: initial;
   width: 50%;
@@ -98,7 +113,7 @@
 .next:hover,
 .back:hover {
   color: white;
-  background-color: rgb(184, 65, 65);
+  background-color: rgb(141, 141, 141);
   opacity: 0.5;
   border: none;
 }
@@ -114,7 +129,8 @@
 @media only screen and (max-width: 600px) {
   .container {
     display: block;
-    justify-content: center;
+    position: relative;
+        padding-bottom: 15%;
   }
   .form {
     width: 100%;
@@ -135,12 +151,10 @@
     display: block;
   }
   .lyric {
-    background-color: aqua;
     width: 100%;
     white-space: pre;
   }
   .sectionArt {
-    background-color: rgb(216, 91, 83);
 
     white-space: "pre-wrap";
     text-align: initial;
